@@ -1,180 +1,178 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>スライド画像</title>
-<style>
-body {
-  font-family: sans-serif;
-  text-align: center;
-}
-.container {
-  display: inline-block;
-  position: relative;
-}
-.slider-container {
-  display: inline-block;
-  width: 1800px;
-  overflow: hidden;
-}
-.image-slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-.image-slider .image-wrapper {
-  position: relative;
-  overflow: hidden;
-  width: 638.98px;
-  height: auto;
-  border-radius: 50px; /* 角丸をimage-wrapperに設定 */
-}
-.image-slider img {
-  width: 100%;
-  height: auto;
-  transition: transform 0.5s ease-in-out;
-}
-.image-slider .image-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 5px solid red; /* 赤い枠線 */
-  opacity: 0; /* 初期状態では非表示 */
-  transition: opacity 0.3s ease-in-out; /* アニメーション */
-  pointer-events: none; /* イベントを透過 */
-}
-.image-slider .image-wrapper:hover::before {
-  opacity: 1; /* ホバー時に表示 */
-}
-.image-slider img:hover {
-  transform: scale(1.1); /* ホバー時の拡大 */
-}
-.image-slider .spacer {
-  width: 10px;
-}
-.button {
-  cursor: pointer;
-  padding: 10px;
-  background-color: #f00;
-  color: white;
-  border: none;
-  border-radius: 50000px;
-  margin: 50px;
-}
-.kenkun {
-  text-align: center;
-}
-.kenkun img {
-  max-width: 100%;
-  height: auto;
-}
+  <title>スライド画像</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+    }
+    .container {
+      display: inline-block;
+      position: relative;
+    }
+    .slider-container {
+      display: inline-block;
+      width: 1800px; /* パソコン用の幅 */
+      overflow: hidden;
+    }
+    .image-slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .image-slider .image-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 638.98px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50px;
+    }
+    .image-slider img {
+      max-width: 100%;
+      height: auto;
+      transition: transform 0.35s ease-in-out;
+    }
+    .image-slider .image-wrapper::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 5px solid red;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none;
+    }
+    .image-slider .image-wrapper:hover::before {
+      opacity: 1;
+    }
+    .image-slider img:hover {
+      transform: scale(1.1);
+    }
+    .image-slider .spacer {
+      width: 10px;
+    }
+    .button {
+      cursor: pointer;
+      padding: 10px;
+      background-color: #f00;
+      color: white;
+      border: none;
+      border-radius: 50000px;
+      margin: 50px;
+    }
+    .kenkun {
+      text-align: center;
+    }
+    .kenkun img {
+      max-width: 100%;
+      height: auto;
+    }
 
-/* 768px以下の画面幅の場合のスタイル変更(スマホなど) */
-@media (max-width: 768px) {
-  .slider-container {
-    width: 100%;
-    overflow-x: auto;
-  }
-  .image-slider {
-    flex-direction: column;
-  }
-  .image-slider .image-wrapper {
-    width: 100%; /* スマホでは幅を100%に */
-    margin-bottom: 10px; /* 画像間の隙間 */
-    border-radius: 0; /* スマホでは角丸を削除 */
-  }
-  .image-slider img {
-    width: 100%;
-    height: auto;
-    transition: transform 0.5s ease-in-out;
-  }
-  .image-slider img:hover {
-    transform: scale(1.1);
-  }
-  .image-slider .image-wrapper::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 5px solid red;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    pointer-events: none;
-  }
-  .image-slider .image-wrapper:hover::before {
-    opacity: 1; /* ホバー時に表示 */
-  }
-  .image-slider .spacer {
-    display: none;
-  }
-  .button {
-    margin: 10px;
-  }
-}
-</style>
+    /* 768px以下の画面幅の場合のスタイル変更(スマホなど) */
+    @media (max-width: 768px) {
+      .slider-container {
+        width: 100%;
+        overflow-x: auto;
+      }
+      .image-slider {
+        flex-direction: column;
+      }
+      .image-slider .image-wrapper {
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 0;
+      }
+      .image-slider img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.35s ease-in-out;
+      }
+      .image-slider .image-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 5px solid red;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        pointer-events: none;
+      }
+      .image-slider .image-wrapper:hover::before {
+        opacity: 1;
+      }
+      .image-slider .spacer {
+        display: none;
+      }
+      .button {
+        margin: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-  <div class="kenkun">
-    <img src="images/kenkun1.png" alt="kenkun1">
-  </div>
-  <div class="slider-container">
-    <div class="image-slider" id="imageSlider">
+  <div class="container">
+    <div class="kenkun">
+      <img src="images/kenkun1.png" alt="kenkun1">
     </div>
-  </div> <br>
-  <button class="button" onclick="prevSlide()">＜</button>
-  <button class="button" onclick="nextSlide()">＞</button>
-</div>
+    <div class="slider-container">
+      <div class="image-slider" id="imageSlider">
+      </div>
+    </div> <br>
+    <button class="button" onclick="prevSlide()">＜</button>
+    <button class="button" onclick="nextSlide()">＞</button>
+  </div>
 
-<script>
-// JavaScript部分は変更なし
-const slider = document.getElementById("imageSlider");
-const imageWidth = 638.98;
-const spacerWidth = 10;
-const containerWidth = 1800;
-const visibleImages = Math.floor(containerWidth / (imageWidth + spacerWidth));
+  <script>
+    const slider = document.getElementById("imageSlider");
+    const imageWidth = 638.98;
+    const spacerWidth = 10;
+    const containerWidth = 1800;
+    const visibleImages = Math.floor(containerWidth / (imageWidth + spacerWidth));
 
-let imageHTML = '';
-for (let i = 0; i < 10000; i++) {
-  if (i % 2 === 0) {
-    imageHTML += `<div class="image-wrapper"><img src="images/youtube.png" alt="youtube"></div>`;
-  } else {
-    imageHTML += `<div class="image-wrapper"><img src="images/addon.png" alt="addon"></div>`;
-  }
-  if (i < 9999) imageHTML += `<div class="spacer"></div>`;
-}
-slider.innerHTML = imageHTML;
-const images = slider.querySelectorAll("img");
-let currentImage = 5000;
+    let imageHTML = '';
+    for (let i = 0; i < 10000; i++) {
+      if (i % 2 === 0) {
+        imageHTML += `<div class="image-wrapper"><img src="images/youtube.png" alt="youtube"></div>`;
+      } else {
+        imageHTML += `<div class="image-wrapper"><img src="images/addon.png" alt="addon"></div>`;
+      }
+      if (i < 9999) imageHTML += `<div class="spacer"></div>`;
+    }
+    slider.innerHTML = imageHTML;
+    const images = slider.querySelectorAll("img");
+    let currentImage = 5000;
 
-slider.style.width = ((imageWidth + spacerWidth) * 10000) + 'px';
-slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
+    slider.style.width = ((imageWidth + spacerWidth) * 10000) + 'px';
+    slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
 
-function nextSlide() {
-  currentImage++;
-  const offset = -currentImage * (imageWidth + spacerWidth);
-  slider.style.transform = `translateX(${offset}px)`;
+    function nextSlide() {
+      currentImage++;
+      const offset = -currentImage * (imageWidth + spacerWidth);
+      slider.style.transform = `translateX(${offset}px)`;
 
-  if (currentImage >= 10000 - visibleImages + 1) {
-    currentImage = 0;
-    slider.style.transform = `translateX(0px)`;
-  }
-}
+      if (currentImage >= 10000 - visibleImages + 1) {
+        currentImage = 0;
+        slider.style.transform = `translateX(0px)`;
+      }
+    }
 
-function prevSlide() {
-  currentImage--;
-  const offset = -currentImage * (imageWidth + spacerWidth);
-  slider.style.transform = `translateX(${offset}px)`;
+    function prevSlide() {
+      currentImage--;
+      const offset = -currentImage * (imageWidth + spacerWidth);
+      slider.style.transform = `translateX(${offset}px)`;
 
-  if (currentImage < 0) {
-    currentImage = 9999 - visibleImages + 1;
-    const offset = -currentImage * (imageWidth + spacerWidth);
-    slider.style.transform = `translateX(${offset}px)`;
-  }
-}
-</script>
+      if (currentImage < 0) {
+        currentImage = 9999 - visibleImages + 1;
+        const offset = -currentImage * (imageWidth + spacerWidth);
+        slider.style.transform = `translateX(${offset}px)`;
+      }
+    }
+  </script>
 </body>
 </html>
