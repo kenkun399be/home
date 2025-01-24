@@ -6,206 +6,206 @@
   <title>スライド画像とYouTubeショート</title>
   <style>
     body {
-  font-family: sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  background-color: #f8d7da;  /* 薄い赤の背景 */
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px), radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px, 10px 10px;  /* 背景模様のサイズ */
-  background-position: 0 0, 10px 10px; /* 背景模様の位置 */
-  position: relative;
-  overflow-x: hidden;  /* 横スクロールを非表示に */
-  height: 100%; /* 縦スクロールを有効に */
-}
+      font-family: sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f8d7da;  /* 薄い赤の背景 */
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px), radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 20px 20px, 10px 10px;  /* 背景模様のサイズ */
+      background-position: 0 0, 10px 10px; /* 背景模様の位置 */
+      position: relative;
+      overflow-x: hidden;  /* 横スクロールを非表示に */
+      height: 100%; /* 縦スクロールを有効に */
+    }
 
-/* 星がアニメーションで動く効果 */
-.star {
-  position: absolute;
-  border-radius: 50%;
-  background: white;
-  animation: star-animation 10s infinite;
-  opacity: 0.8;
-}
+    /* 星がアニメーションで動く効果 */
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      animation: star-animation 10s infinite;
+      opacity: 0.8;
+    }
 
-/* ランダムな動きを与えるアニメーション */
-@keyframes star-animation {
-  0% {
-    transform: scale(0) translateX(0) translateY(0);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1) translateX(var(--rand-x-1)) translateY(var(--rand-y-1));
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(0) translateX(var(--rand-x-2)) translateY(var(--rand-y-2));
-    opacity: 1;
-  }
-}
+    /* ランダムな動きを与えるアニメーション */
+    @keyframes star-animation {
+      0% {
+        transform: scale(0) translateX(0) translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1) translateX(var(--rand-x-1)) translateY(var(--rand-y-1));
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(0) translateX(var(--rand-x-2)) translateY(var(--rand-y-2));
+        opacity: 1;
+      }
+    }
 
-.container {
-  display: inline-block;
-  position: relative;
-  width: 100%;
-}
+    .container {
+      display: inline-block;
+      position: relative;
+      width: 100%;
+    }
 
-.slider-container {
-  display: inline-block;
-  width: 100%;
-  overflow: hidden;
-}
+    .slider-container {
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
+    }
 
-.image-slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
+    .image-slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
 
-.image-slider .image-wrapper {
-  position: relative;
-  overflow: hidden;
-  width: 638.98px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px;
-  height: 359px;
-}
+    .image-slider .image-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 638.98px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50px;
+      height: 359px;
+    }
 
-.image-slider img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.35s ease-in-out;
-}
+    .image-slider img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.35s ease-in-out;
+    }
 
-.image-slider .image-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 5px solid red;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  pointer-events: none;
-}
+    .image-slider .image-wrapper::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 5px solid red;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none;
+    }
 
-.image-slider .image-wrapper:hover::before {
-  opacity: 1;
-}
+    .image-slider .image-wrapper:hover::before {
+      opacity: 1;
+    }
 
-.image-slider img:hover {
-  transform: scale(1.1);
-}
+    .image-slider img:hover {
+      transform: scale(1.1);
+    }
 
-.image-slider .spacer {
-  width: 10px;
-}
+    .image-slider .spacer {
+      width: 10px;
+    }
 
-.button {
-  cursor: pointer;
-  padding: 10px;
-  background-color: #f00;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  margin: 20px;
-  font-size: 18px;
-}
+    .button {
+      cursor: pointer;
+      padding: 10px;
+      background-color: #f00;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      margin: 20px;
+      font-size: 18px;
+    }
 
-.kenkun {
-  text-align: center;
-  margin: 20px 0;
-}
+    .kenkun {
+      text-align: center;
+      margin: 20px 0;
+    }
 
-.kenkun img {
-  max-width: 100%;
-  height: auto;
-}
+    .kenkun img {
+      max-width: 100%;
+      height: auto;
+    }
 
-.youtube-shorts {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-}
+    .youtube-shorts {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
 
-.youtube-shorts-container {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  width: 1000px;  /* 幅をさらに広げました */
-  max-width: 100%;  /* 最大幅を100%に設定 */
-  overflow-x: auto;
-  margin: 0 auto;  /* 中央揃え */
-}
+    .youtube-shorts-container {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: flex-start;  /* ここを変更 */
+      width: 1000px;
+      max-width: 100%;
+      overflow-x: auto;
+      margin: 0 auto;
+    }
 
-.youtube-shorts-container iframe {
-  width: 350px;  /* 幅を少し小さく変更 */
-  height: 625px; /* 高さも調整 */
-  margin: 10px;
-}
+    .youtube-shorts-container iframe {
+      width: 350px;  /* 幅を少し小さく変更 */
+      height: 625px; /* 高さも調整 */
+      margin: 10px;
+    }
 
-@media (min-width: 1200px) {
-  .youtube-shorts-container {
-    width: 1100px;  /* より広く設定 */
-  }
-  .youtube-shorts-container iframe {
-    width: 350px; /* 幅を350pxに設定 */
-    height: 625px;
-  }
-}
+    @media (min-width: 1200px) {
+      .youtube-shorts-container {
+        width: 1100px;  /* より広く設定 */
+      }
+      .youtube-shorts-container iframe {
+        width: 350px; /* 幅を350pxに設定 */
+        height: 625px;
+      }
+    }
 
-@media (min-width: 992px) and (max-width: 1199px) {
-  .youtube-shorts-container {
-    width: 1000px;
-  }
-  .youtube-shorts-container iframe {
-    width: 350px;
-    height: 625px;
-  }
-}
+    @media (min-width: 992px) and (max-width: 1199px) {
+      .youtube-shorts-container {
+        width: 1000px;
+      }
+      .youtube-shorts-container iframe {
+        width: 350px;
+        height: 625px;
+      }
+    }
 
-/* スマホサイズのスタイル調整 */
-@media (max-width: 768px) {
-  body {
-    background-size: 30px 30px, 15px 15px; /* 背景の模様のサイズを調整 */
-  }
+    /* スマホサイズのスタイル調整 */
+    @media (max-width: 768px) {
+      body {
+        background-size: 30px 30px, 15px 15px; /* 背景の模様のサイズを調整 */
+      }
 
-  .container {
-    width: 100%; /* 幅を100%に */
-    padding: 0 15px;  /* 少し余白を加え、画面いっぱいに広げる */
-  }
+      .container {
+        width: 100%; /* 幅を100%に */
+        padding: 0 15px;  /* 少し余白を加え、画面いっぱいに広げる */
+      }
 
-  .slider-container {
-    width: 100%;
-  }
+      .slider-container {
+        width: 100%;
+      }
 
-  .image-slider .image-wrapper {
-    width: 90vw;  /* スライダーの幅を画面幅に合わせて調整 */
-    height: 50vw;  /* 高さを調整 */
-  }
+      .image-slider .image-wrapper {
+        width: 70vw;  /* スライダーの幅をスマホ画面幅の70%に設定 */
+        height: 40vw;  /* 高さも調整 */
+      }
 
-  .youtube-shorts-container {
-    width: 90%;  /* スマホの時にYouTubeコンテナの幅を90%に設定 */
-    margin: 0 auto;  /* 中央揃え */
-  }
+      .youtube-shorts-container {
+        width: 90%;  /* スマホの時にYouTubeコンテナの幅を90%に設定 */
+        margin: 0 auto;  /* 中央揃え */
+      }
 
-  .youtube-shorts-container iframe {
-    width: 100%;  /* iframeの幅をコンテナに合わせる */
-    height: 150vw;  /* 高さを広げる */
-  }
+      .youtube-shorts-container iframe {
+        width: 100%;  /* iframeの幅をコンテナに合わせる */
+        height: 150vw;  /* 高さを広げる */
+      }
 
-  /* ボタンの表示 */
-  .button {
-    font-size: 14px;  /* ボタンの文字サイズを小さく */
-    display: inline-block;  /* ボタンを表示 */
-    margin: 20px; /* ボタンの余白 */
-    padding: 10px; /* ボタンの内側の余白 */
-  }
-}
+      /* ボタンの表示 */
+      .button {
+        font-size: 14px;  /* ボタンの文字サイズを小さく */
+        display: inline-block;  /* ボタンを表示 */
+        margin: 20px; /* ボタンの余白 */
+        padding: 10px; /* ボタンの内側の余白 */
+      }
+    }
   </style>
 </head>
 <body>
@@ -237,7 +237,6 @@
   </div>
 
   <script>
-    // スライダーに画像を動的に挿入するコード
     const slider = document.getElementById("imageSlider");
     const imageWidth = 638.98;
     const spacerWidth = 10;
@@ -261,21 +260,39 @@
     });
 
     slider.innerHTML = imageHTML;
-    let currentImage = 0;
+    let currentImage = Math.floor(5);  // 中央の画像に設定
     slider.style.width = `${(imageWidth + spacerWidth) * imagesData.length}px`;
     slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
 
     function nextSlide() {
       if (currentImage < imagesData.length - visibleImages) {
         currentImage++;
+        slider.style.transition = "transform 0.5s ease-in-out"; // アニメーションを有効にする
         slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
+      }
+      // 3つ進んだ場合、アニメーションなしで初期位置に戻す
+      if (currentImage >= 7) {
+        setTimeout(() => {
+          slider.style.transition = "none"; // アニメーションなし
+          currentImage = Math.floor(5); // 中央に戻す
+          slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`; // 中央位置に戻す
+        }, 500); // 500ms後に初期位置に戻す
       }
     }
 
     function prevSlide() {
       if (currentImage > 0) {
         currentImage--;
+        slider.style.transition = "transform 0.5s ease-in-out"; // アニメーションを有効にする
         slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
+      }
+      // 3つ戻った場合、アニメーションなしで初期位置に戻す
+      if (currentImage <= 3) {
+        setTimeout(() => {
+          slider.style.transition = "none"; // アニメーションなし
+          currentImage = Math.floor(5); // 中央に戻す
+          slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`; // 中央位置に戻す
+        }, 500); // 500ms後に初期位置に戻す
       }
     }
   </script>
