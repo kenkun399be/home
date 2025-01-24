@@ -12,7 +12,7 @@ body {
 }
 .slider-container {
   display: inline-block;
-  width: 1800px; /* コンテンツの幅に合わせて変更 */
+  width: 1800px;
   overflow: hidden;
 }
 .image-slider {
@@ -20,13 +20,13 @@ body {
   transition: transform 0.5s ease-in-out;
 }
 .image-slider img {
-  width: 638.98px; /* 画像の幅を変更 */
-  height: auto; /* 高さは自動調整 */
+  width: 638.98px;
+  height: auto;
   flex-shrink: 0;
-  border-radius: 50px; /* 角丸の半径 */
+  border-radius: 50px;
 }
 .image-slider .spacer {
-  width: 10px; /* 隙間幅 */
+  width: 10px;
 }
 .button {
   cursor: pointer;
@@ -41,6 +41,31 @@ body {
   text-align: center;
 }
 .kenkun img {
+  max-width: 100%; /* kenkun画像が画面からはみ出ないように */
+  height: auto;
+}
+
+/* 768px以下の画面幅の場合のスタイル変更(スマホなど) */
+@media (max-width: 768px) {
+  .slider-container {
+    width: 100%; /* スライドコンテナを画面幅いっぱいに */
+    overflow-x: auto; /* 横スクロールを有効化 */
+  }
+  .image-slider {
+    flex-direction: column; /* 画像を縦に並べる */
+  }
+  .image-slider img {
+    width: 100%; /* 画像幅を画面幅いっぱいに */
+    height: auto;
+    border-radius: 0; /* 角丸を削除 */
+    margin-bottom: 10px; /* 画像間に隙間 */
+  }
+  .image-slider .spacer {
+    display: none; /* スペーサを非表示 */
+  }
+  .button {
+    margin: 10px; /* ボタンのマージンを小さく */
+  }
 }
 </style>
 </head>
@@ -52,17 +77,18 @@ body {
   <div class="slider-container">
     <div class="image-slider" id="imageSlider">
     </div>
-  </div>
+  </div> <br>
   <button class="button" onclick="prevSlide()">＜</button>
   <button class="button" onclick="nextSlide()">＞</button>
 </div>
 
 <script>
+// JavaScript部分は変更なし
 const slider = document.getElementById("imageSlider");
-const imageWidth = 638.98; // 画像幅変更
-const spacerWidth = 10; // 隙間幅
-const containerWidth = 1800; // コンテナ幅変更
-const visibleImages = Math.floor(containerWidth / (imageWidth + spacerWidth)); // 表示画像数再計算
+const imageWidth = 638.98;
+const spacerWidth = 10;
+const containerWidth = 1800;
+const visibleImages = Math.floor(containerWidth / (imageWidth + spacerWidth));
 
 let imageHTML = '';
 for (let i = 0; i < 10000; i++) {
@@ -71,13 +97,13 @@ for (let i = 0; i < 10000; i++) {
   } else {
     imageHTML += `<img src="images/addon.png" alt="addon">`;
   }
-  if (i < 9999) imageHTML += `<div class="spacer"></div>`; //画像間に隙間を追加
+  if (i < 9999) imageHTML += `<div class="spacer"></div>`;
 }
 slider.innerHTML = imageHTML;
 const images = slider.querySelectorAll("img");
-let currentImage = 5000; // 初期表示位置
+let currentImage = 5000;
 
-slider.style.width = ((imageWidth + spacerWidth) * 10000) + 'px'; //幅の再計算
+slider.style.width = ((imageWidth + spacerWidth) * 10000) + 'px';
 slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
 
 function nextSlide() {
