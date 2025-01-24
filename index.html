@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ビューポート設定 -->
   <title>スライド画像</title>
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
-      margin: 0;
-      padding: 0;
     }
     .container {
       display: inline-block;
       position: relative;
-      width: 100%;
     }
     .slider-container {
       display: inline-block;
@@ -28,7 +23,7 @@
     .image-slider .image-wrapper {
       position: relative;
       overflow: hidden;
-      width: 638.98px; /* パソコン用の画像幅 */
+      width: 638.98px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -77,30 +72,45 @@
       height: auto;
     }
 
-    /* 768px以下の画面幅の場合のスタイル変更（スマホなど） */
+    /* 768px以下の画面幅の場合のスタイル変更(スマホなど) */
     @media (max-width: 768px) {
       .slider-container {
         width: 100%;
-        overflow-x: auto; /* スマホで横スクロール */
+        overflow-x: auto;
       }
       .image-slider {
-        flex-direction: column; /* スマホで縦並び */
+        flex-direction: column;
       }
       .image-slider .image-wrapper {
-        width: 100%; /* スマホでは画像が横幅に合わせて表示 */
+        width: 100%;
         margin-bottom: 10px;
         border-radius: 0;
       }
       .image-slider img {
         width: 100%;
         height: auto;
+        transition: transform 0.35s ease-in-out;
+      }
+      .image-slider .image-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 5px solid red;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        pointer-events: none;
+      }
+      .image-slider .image-wrapper:hover::before {
+        opacity: 1;
       }
       .image-slider .spacer {
-        display: none; /* スペーサーを非表示 */
+        display: none;
       }
       .button {
         margin: 10px;
-        padding: 8px; /* ボタンのサイズ調整 */
       }
     }
   </style>
