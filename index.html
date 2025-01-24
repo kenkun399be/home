@@ -153,6 +153,39 @@
         height: 625px;
       }
     }
+    /* スマホサイズのスタイル調整 */
+    @media (max-width: 768px) {
+      body {
+        background-size: 30px 30px, 15px 15px; /* 背景の模様のサイズを調整 */
+      }
+
+      .container {
+        width: 100%; /* 幅を100%に */
+        padding: 0 15px;  /* 少し余白を加え、画面いっぱいに広げる */
+      }
+
+      .slider-container {
+        width: 100%;
+      }
+
+      .image-slider .image-wrapper {
+        width: 90vw;  /* スライダーの幅を画面幅に合わせて調整 */
+        height: 50vw;  /* 高さを調整 */
+      }
+
+      .youtube-shorts-container {
+        width: 100%;
+      }
+
+      .youtube-shorts-container iframe {
+        width: 80vw;  /* YouTubeの幅を広げる */
+        height: 150vw;  /* 高さを広げる */
+      }
+
+      .button {
+        font-size: 14px;  /* ボタンの文字サイズを小さく */
+      }
+    }
   </style>
 </head>
 <body>
