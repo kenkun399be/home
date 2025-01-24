@@ -5,229 +5,208 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>スライド画像とYouTubeショート</title>
   <style>
-    /* 背景設定：ランダム模様と星 */
-    /* 背景設定：ランダム模様と星 */
-body {
-  font-family: sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  background-color: #f8d7da;  /* 薄い赤の背景 */
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px), radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px, 10px 10px;  /* 背景模様のサイズ */
-  background-position: 0 0, 10px 10px; /* 背景模様の位置 */
-  position: relative;
-  overflow-x: hidden;  /* 横スクロールを非表示に */
-  height: 100%; /* 縦スクロールを有効に */
-}
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f8d7da; /* 薄い赤の背景 */
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px), radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 20px 20px, 10px 10px; /* 背景模様のサイズ */
+      background-position: 0 0, 10px 10px; /* 背景模様の位置 */
+      position: relative;
+      overflow-x: hidden; /* 横スクロールを非表示に */
+      height: 100%;
+    }
 
-/* 星がアニメーションで動く効果 */
-.star {
-  position: absolute;
-  border-radius: 50%;
-  background: white;
-  animation: star-animation 10s infinite;
-  opacity: 0.8;
-}
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      animation: star-animation 10s infinite;
+      opacity: 0.8;
+    }
 
-/* ランダムな動きを与えるアニメーション */
-@keyframes star-animation {
-  0% {
-    transform: scale(0) translateX(0) translateY(0);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1) translateX(var(--rand-x-1)) translateY(var(--rand-y-1));
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(0) translateX(var(--rand-x-2)) translateY(var(--rand-y-2));
-    opacity: 1;
-  }
-}
+    @keyframes star-animation {
+      0% {
+        transform: scale(0) translateX(0) translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1) translateX(var(--rand-x-1)) translateY(var(--rand-y-1));
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(0) translateX(var(--rand-x-2)) translateY(var(--rand-y-2));
+        opacity: 1;
+      }
+    }
 
-.container {
-  display: inline-block;
-  position: relative;
-  width: 100%;
-}
+    .container {
+      display: inline-block;
+      position: relative;
+      width: 100%;
+    }
 
-.slider-container {
-  display: inline-block;
-  width: 100%;
-  overflow: hidden;
-}
+    .slider-container {
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
+    }
 
-.image-slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
+    .image-slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
 
-.image-slider .image-wrapper {
-  position: relative;
-  overflow: hidden;
-  width: 638.98px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px;
-  height: 359px;
-}
+    .image-slider .image-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 638.98px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50px;
+      height: 359px;
+    }
 
-.image-slider img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.35s ease-in-out;
-}
+    .image-slider img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.35s ease-in-out;
+    }
 
-.image-slider .image-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 5px solid red;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  pointer-events: none;
-}
+    .image-slider .image-wrapper::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 5px solid red;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none;
+    }
 
-.image-slider .image-wrapper:hover::before {
-  opacity: 1;
-}
+    .image-slider .image-wrapper:hover::before {
+      opacity: 1;
+    }
 
-.image-slider img:hover {
-  transform: scale(1.1);
-}
+    .image-slider img:hover {
+      transform: scale(1.1);
+    }
 
-.image-slider .spacer {
-  width: 10px;
-}
+    .image-slider .spacer {
+      width: 10px;
+    }
 
-.button {
-  cursor: pointer;
-  padding: 10px;
-  background-color: #f00;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  margin: 20px;
-}
+    .button {
+      cursor: pointer;
+      padding: 10px;
+      background-color: #f00;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      margin: 20px;
+    }
 
-.kenkun {
-  text-align: center;
-  margin: 20px 0;
-}
+    .kenkun {
+      text-align: center;
+      margin: 20px 0;
+    }
 
-.kenkun img {
-  max-width: 100%;
-  height: auto;
-}
+    .kenkun img {
+      max-width: 100%;
+      height: auto;
+    }
 
-.youtube-shorts {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-}
+    .youtube-shorts {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
 
-.youtube-shorts-container {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  width: 1000px;  /* 幅をさらに広げました */
-  max-width: 100%;  /* 最大幅を100%に設定 */
-  overflow-x: auto;
-  margin: 0 auto;  /* 中央揃え */
-}
+    .youtube-shorts-container {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      width: 1000px;
+      max-width: 100%;
+      overflow-x: auto;
+      margin: 0 auto;
+    }
 
-.youtube-shorts-container iframe {
-  width: 350px;  /* 幅を少し小さく変更 */
-  height: 625px; /* 高さも調整 */
-  margin: 10px;
-}
+    .youtube-shorts-container iframe {
+      width: 350px;
+      height: 625px;
+      margin: 10px;
+    }
 
-@media (min-width: 1200px) {
-  .youtube-shorts-container {
-    width: 1100px;  /* より広く設定 */
-  }
-  .youtube-shorts-container iframe {
-    width: 350px; /* 幅を350pxに設定 */
-    height: 625px;
-  }
-}
+    /* パソコン用のスタイル */
+    @media (min-width: 769px) {
+      .slider-container {
+        width: 100%;
+      }
 
-@media (min-width: 992px) and (max-width: 1199px) {
-  .youtube-shorts-container {
-    width: 1000px;
-  }
-  .youtube-shorts-container iframe {
-    width: 350px;
-    height: 625px;
-  }
-}
+      .image-slider .image-wrapper {
+        width: 638.98px;
+        height: 359px;
+      }
 
-/* スマホサイズのスタイル調整 */
-@media (max-width: 768px) {
-  body {
-    background-size: 30px 30px, 15px 15px; /* 背景の模様のサイズを調整 */
-  }
+      .youtube-shorts-container {
+        width: 1000px;
+      }
 
-  .container {
-    width: 100%; /* 幅を100%に */
-    padding: 0 15px;  /* 少し余白を加え、画面いっぱいに広げる */
-  }
+      .youtube-shorts-container iframe {
+        width: 350px;
+        height: 625px;
+      }
+    }
 
-  .slider-container {
-    width: 100%;
-  }
+    /* スマホ用のスタイル */
+    @media (max-width: 768px) {
+      body {
+        background-size: 30px 30px, 15px 15px; /* 背景模様のサイズを調整 */
+      }
 
-  .image-slider .image-wrapper {
-    width: 90vw;  /* スライダーの幅を画面幅に合わせて調整 */
-    height: 50vw;  /* 高さを調整 */
-  }
+      .container {
+        width: 100%;
+        padding: 0 15px; /* 画面いっぱいに広げる */
+      }
 
-  .youtube-shorts-container {
-    width: 90%;  /* スマホの時にYouTubeコンテナの幅を90%に設定 */
-    margin: 0 auto;  /* 中央揃え */
-  }
+      .slider-container {
+        width: 100%;
+      }
 
-  .youtube-shorts-container iframe {
-    width: 100%;  /* iframeの幅をコンテナに合わせる */
-    height: 150vw;  /* 高さを広げる */
-  }
+      .image-slider .image-wrapper {
+        width: 90vw; /* スライダーの幅を画面幅に合わせて調整 */
+        height: 50vw; /* 高さを調整 */
+      }
 
-  .button {
-    font-size: 14px;  /* ボタンの文字サイズを小さく */
-    display: none;  /* ボタンを非表示に */
-  }
-}
+      .youtube-shorts-container {
+        width: 90%;
+        margin: 0 auto;
+      }
 
+      .youtube-shorts-container iframe {
+        width: 100%; /* iframeの幅をコンテナに合わせる */
+        height: 150vw; /* 高さを広げる */
+      }
+
+      .button {
+        font-size: 14px;
+        display: none; /* ボタンを非表示に */
+      }
+    }
   </style>
 </head>
 <body>
   <!-- 背景の星をランダムに表示 -->
   <div class="star" style="top: 10%; left: 10%; width: 5px; height: 5px; --rand-x-1: 200px; --rand-y-1: 100px; --rand-x-2: -200px; --rand-y-2: -150px;"></div>
   <div class="star" style="top: 20%; left: 30%; width: 8px; height: 8px; --rand-x-1: -150px; --rand-y-1: 50px; --rand-x-2: 100px; --rand-y-2: -100px;"></div>
-  <div class="star" style="top: 50%; left: 50%; width: 6px; height: 6px; --rand-x-1: 100px; --rand-y-1: -150px; --rand-x-2: -150px; --rand-y-2: 200px;"></div>
-  <div class="star" style="top: 70%; left: 70%; width: 4px; height: 4px; --rand-x-1: -100px; --rand-y-1: -200px; --rand-x-2: 150px; --rand-y-2: 150px;"></div>
-  <div class="star" style="top: 40%; left: 80%; width: 7px; height: 7px; --rand-x-1: 250px; --rand-y-1: -100px; --rand-x-2: -100px; --rand-y-2: 50px;"></div>
-  <div class="star" style="top: 25%; left: 60%; width: 3px; height: 3px; --rand-x-1: -50px; --rand-y-1: 50px; --rand-x-2: 200px; --rand-y-2: 100px;"></div>
-  <div class="star" style="top: 35%; left: 75%; width: 6px; height: 6px; --rand-x-1: 100px; --rand-y-1: 150px; --rand-x-2: -200px; --rand-y-2: 50px;"></div>
-  <div class="star" style="top: 45%; left: 55%; width: 4px; height: 4px; --rand-x-1: 150px; --rand-y-1: -150px; --rand-x-2: -100px; --rand-y-2: 100px;"></div>
-  <div class="star" style="top: 60%; left: 20%; width: 5px; height: 5px; --rand-x-1: -100px; --rand-y-1: 50px; --rand-x-2: 250px; --rand-y-2: 50px;"></div>
-  <div class="star" style="top: 15%; left: 90%; width: 6px; height: 6px; --rand-x-1: -200px; --rand-y-1: -100px; --rand-x-2: 200px; --rand-y-2: 200px;"></div>
-  <div class="star" style="top: 75%; left: 10%; width: 4px; height: 4px; --rand-x-1: 100px; --rand-y-1: 200px; --rand-x-2: -200px; --rand-y-2: -50px;"></div>
-  <div class="star" style="top: 5%; left: 40%; width: 3px; height: 3px; --rand-x-1: 200px; --rand-y-1: -100px; --rand-x-2: 100px; --rand-y-2: 200px;"></div>
-  <div class="star" style="top: 85%; left: 60%; width: 6px; height: 6px; --rand-x-1: -100px; --rand-y-1: -150px; --rand-x-2: 100px; --rand-y-2: 100px;"></div>
-  <div class="star" style="top: 30%; left: 10%; width: 5px; height: 5px; --rand-x-1: -200px; --rand-y-1: 200px; --rand-x-2: 200px; --rand-y-2: -100px;"></div>
-  <div class="star" style="top: 50%; left: 90%; width: 6px; height: 6px; --rand-x-1: 100px; --rand-y-1: -50px; --rand-x-2: -200px; --rand-y-2: -150px;"></div>
-  <div class="star" style="top: 20%; left: 20%; width: 7px; height: 7px; --rand-x-1: -150px; --rand-y-1: 100px; --rand-x-2: 200px; --rand-y-2: -200px;"></div>
-  <div class="star" style="top: 65%; left: 35%; width: 8px; height: 8px; --rand-x-1: -100px; --rand-y-1: 50px; --rand-x-2: 150px; --rand-y-2: -50px;"></div>
-  <div class="star" style="top: 5%; left: 55%; width: 3px; height: 3px; --rand-x-1: 100px; --rand-y-1: 150px; --rand-x-2: 50px; --rand-y-2: -200px;"></div>
-  <div class="star" style="top: 40%; left: 90%; width: 4px; height: 4px; --rand-x-1: 250px; --rand-y-1: -100px; --rand-x-2: -150px; --rand-y-2: 50px;"></div>
 
   <!-- コンテンツ -->
   <div class="container">
@@ -243,13 +222,11 @@ body {
     <button class="button" id="prevButton" onclick="prevSlide()">＜</button>
     <button class="button" id="nextButton" onclick="nextSlide()">＞</button>
     <div class="youtube-shorts">
-      <div class="youtube-shorts">
-        <h2>人気のYouTube動画</h2>
-        <div class="youtube-shorts-container">
-          <iframe src="https://www.youtube.com/embed/8xstmeatMyI?si=YevsI1UDon7tUE-9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          <iframe src="https://www.youtube.com/embed/v7mAOjG2CW4?si=Qxt9zuaS6IeYBjb9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          <iframe src="https://www.youtube.com/embed/8xstmeatMyI?si=IpRL7_P07fJAQFrB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
+      <h2>人気のYouTube動画</h2>
+      <div class="youtube-shorts-container">
+        <iframe src="https://www.youtube.com/embed/8xstmeatMyI?si=YevsI1UDon7tUE-9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/v7mAOjG2CW4?si=Qxt9zuaS6IeYBjb9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/8xstmeatMyI?si=IpRL7_P07fJAQFrB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </div>
   </div>
@@ -282,26 +259,6 @@ body {
     let currentImage = 0;
     slider.style.width = `${(imageWidth + spacerWidth) * imagesData.length}px`;
     slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
-
-    let startX = 0;
-    let endX = 0;
-
-    // タッチイベントを追加
-    slider.addEventListener('touchstart', function (e) {
-      startX = e.touches[0].clientX;
-    });
-
-    slider.addEventListener('touchmove', function (e) {
-      endX = e.touches[0].clientX;
-    });
-
-    slider.addEventListener('touchend', function () {
-      if (startX > endX) {
-        nextSlide();
-      } else if (startX < endX) {
-        prevSlide();
-      }
-    });
 
     function nextSlide() {
       if (currentImage < imagesData.length - visibleImages) {
