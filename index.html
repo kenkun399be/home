@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>上から降りてくる画像</title>
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.image-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+img {
+  width: 1920px;
+  height: 395px;
+  opacity: 0;
+  animation: dropIn 1s ease-in-out forwards; /* アニメーション適用 */
+}
+
+@keyframes dropIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%); /* 上から50%の位置から開始 */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* 最終的な位置 */
+  }
+}
+</style>
+</head>
+<body>
+<div class="image-container">
+  <img src="images/kenkun1.png" alt="フェードイン画像" />
+</div>
+</body>
+</html>
