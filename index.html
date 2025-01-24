@@ -6,187 +6,205 @@
   <title>スライド画像とYouTubeショート</title>
   <style>
     /* 背景設定：ランダム模様と星 */
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      background-color: #f8d7da;  /* 薄い赤の背景 */
-      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px), radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-      background-size: 20px 20px, 10px 10px;  /* 背景模様のサイズ */
-      background-position: 0 0, 10px 10px; /* 背景模様の位置 */
-      position: relative;
-      overflow-x: hidden;  /* 横スクロールを非表示に */
-      height: 100%; /* 縦スクロールを有効に */
-    }
+    /* 背景設定：ランダム模様と星 */
+body {
+  font-family: sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: #f8d7da;  /* 薄い赤の背景 */
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px), radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px, 10px 10px;  /* 背景模様のサイズ */
+  background-position: 0 0, 10px 10px; /* 背景模様の位置 */
+  position: relative;
+  overflow-x: hidden;  /* 横スクロールを非表示に */
+  height: 100%; /* 縦スクロールを有効に */
+}
 
-    /* 星がアニメーションで動く効果 */
-    .star {
-      position: absolute;
-      border-radius: 50%;
-      background: white;
-      animation: star-animation 10s infinite;
-      opacity: 0.8;
-    }
+/* 星がアニメーションで動く効果 */
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: star-animation 10s infinite;
+  opacity: 0.8;
+}
 
-    /* ランダムな動きを与えるアニメーション */
-    @keyframes star-animation {
-      0% {
-        transform: scale(0) translateX(0) translateY(0);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1) translateX(var(--rand-x-1)) translateY(var(--rand-y-1));
-        opacity: 0.5;
-      }
-      100% {
-        transform: scale(0) translateX(var(--rand-x-2)) translateY(var(--rand-y-2));
-        opacity: 1;
-      }
-    }
+/* ランダムな動きを与えるアニメーション */
+@keyframes star-animation {
+  0% {
+    transform: scale(0) translateX(0) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1) translateX(var(--rand-x-1)) translateY(var(--rand-y-1));
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(0) translateX(var(--rand-x-2)) translateY(var(--rand-y-2));
+    opacity: 1;
+  }
+}
 
-    .container {
-      display: inline-block;
-      position: relative;
-      width: 100%;
-    }
-    .slider-container {
-      display: inline-block;
-      width: 100%;
-      overflow: hidden;
-    }
-    .image-slider {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-    .image-slider .image-wrapper {
-      position: relative;
-      overflow: hidden;
-      width: 638.98px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50px;
-      height: 359px;
-    }
-    .image-slider img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.35s ease-in-out;
-    }
-    .image-slider .image-wrapper::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 5px solid red;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-      pointer-events: none;
-    }
-    .image-slider .image-wrapper:hover::before {
-      opacity: 1;
-    }
-    .image-slider img:hover {
-      transform: scale(1.1);
-    }
-    .image-slider .spacer {
-      width: 10px;
-    }
-    .button {
-      cursor: pointer;
-      padding: 10px;
-      background-color: #f00;
-      color: white;
-      border: none;
-      border-radius: 50px;
-      margin: 20px;
-    }
-    .kenkun {
-      text-align: center;
-      margin: 20px 0;
-    }
-    .kenkun img {
-      max-width: 100%;
-      height: auto;
-    }
+.container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
 
-    .youtube-shorts {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-    }
-    .youtube-shorts-container {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: center;
-      width: 1000px;  /* 幅をさらに広げました */
-      max-width: 100%;  /* 最大幅を100%に設定 */
-      overflow-x: auto;
-      margin: 0 auto;  /* 中央揃え */
-    }
-    .youtube-shorts-container iframe {
-      width: 350px;  /* 幅を少し小さく変更 */
-      height: 625px; /* 高さも調整 */
-      margin: 10px;
-    }
+.slider-container {
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+}
 
-    @media (min-width: 1200px) {
-      .youtube-shorts-container {
-        width: 1100px;  /* より広く設定 */
-      }
-      .youtube-shorts-container iframe {
-        width: 350px; /* 幅を350pxに設定 */
-        height: 625px;
-      }
-    }
-    @media (min-width: 992px) and (max-width: 1199px) {
-      .youtube-shorts-container {
-        width: 1000px;
-      }
-      .youtube-shorts-container iframe {
-        width: 350px;
-        height: 625px;
-      }
-    }
-    /* スマホサイズのスタイル調整 */
-    @media (max-width: 768px) {
-      body {
-        background-size: 30px 30px, 15px 15px; /* 背景の模様のサイズを調整 */
-      }
+.image-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
 
-      .container {
-        width: 100%; /* 幅を100%に */
-        padding: 0 15px;  /* 少し余白を加え、画面いっぱいに広げる */
-      }
+.image-slider .image-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 638.98px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  height: 359px;
+}
 
-      .slider-container {
-        width: 100%;
-      }
+.image-slider img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.35s ease-in-out;
+}
 
-      .image-slider .image-wrapper {
-        width: 90vw;  /* スライダーの幅を画面幅に合わせて調整 */
-        height: 50vw;  /* 高さを調整 */
-      }
+.image-slider .image-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 5px solid red;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
 
-      .youtube-shorts-container {
-        width: 100%;
-      }
+.image-slider .image-wrapper:hover::before {
+  opacity: 1;
+}
 
-      .youtube-shorts-container iframe {
-        width: 80vw;  /* YouTubeの幅を広げる */
-        height: 150vw;  /* 高さを広げる */
-      }
+.image-slider img:hover {
+  transform: scale(1.1);
+}
 
-      .button {
-        font-size: 14px;  /* ボタンの文字サイズを小さく */
-        display: none;  /* ボタンを非表示に */
-      }
-    }
+.image-slider .spacer {
+  width: 10px;
+}
+
+.button {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #f00;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  margin: 20px;
+}
+
+.kenkun {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.kenkun img {
+  max-width: 100%;
+  height: auto;
+}
+
+.youtube-shorts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.youtube-shorts-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 1000px;  /* 幅をさらに広げました */
+  max-width: 100%;  /* 最大幅を100%に設定 */
+  overflow-x: auto;
+  margin: 0 auto;  /* 中央揃え */
+}
+
+.youtube-shorts-container iframe {
+  width: 350px;  /* 幅を少し小さく変更 */
+  height: 625px; /* 高さも調整 */
+  margin: 10px;
+}
+
+@media (min-width: 1200px) {
+  .youtube-shorts-container {
+    width: 1100px;  /* より広く設定 */
+  }
+  .youtube-shorts-container iframe {
+    width: 350px; /* 幅を350pxに設定 */
+    height: 625px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .youtube-shorts-container {
+    width: 1000px;
+  }
+  .youtube-shorts-container iframe {
+    width: 350px;
+    height: 625px;
+  }
+}
+
+/* スマホサイズのスタイル調整 */
+@media (max-width: 768px) {
+  body {
+    background-size: 30px 30px, 15px 15px; /* 背景の模様のサイズを調整 */
+  }
+
+  .container {
+    width: 100%; /* 幅を100%に */
+    padding: 0 15px;  /* 少し余白を加え、画面いっぱいに広げる */
+  }
+
+  .slider-container {
+    width: 100%;
+  }
+
+  .image-slider .image-wrapper {
+    width: 90vw;  /* スライダーの幅を画面幅に合わせて調整 */
+    height: 50vw;  /* 高さを調整 */
+  }
+
+  .youtube-shorts-container {
+    width: 90%;  /* スマホの時にYouTubeコンテナの幅を90%に設定 */
+    margin: 0 auto;  /* 中央揃え */
+  }
+
+  .youtube-shorts-container iframe {
+    width: 100%;  /* iframeの幅をコンテナに合わせる */
+    height: 150vw;  /* 高さを広げる */
+  }
+
+  .button {
+    font-size: 14px;  /* ボタンの文字サイズを小さく */
+    display: none;  /* ボタンを非表示に */
+  }
+}
+
   </style>
 </head>
 <body>
