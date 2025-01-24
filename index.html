@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>上から降りてくる画像</title>
+<title>レスポンシブな画像</title>
 <style>
 body {
   margin: 0;
@@ -12,25 +12,39 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw; /* 画面幅全体 */
+  height: auto; /* 画像のアスペクト比を維持 */
   z-index: 1000;
+  display: flex;
+  justify-content: center; /* 水平方向中央揃え */
+  align-items: flex-start; /* 垂直方向上揃え */
 }
 
 img {
-  width: 1920px;
-  height: 395px;
+  max-width: 100%; /* 画面幅に合わせて最大サイズを調整 */
+  height: auto; /* 画像のアスペクト比を維持 */
   opacity: 0;
-  animation: dropIn 1s ease-in-out forwards; /* アニメーション適用 */
+  animation: dropIn 1s ease-in-out forwards;
 }
 
 @keyframes dropIn {
   0% {
     opacity: 0;
-    transform: translateY(-50%); /* 上から50%の位置から開始 */
+    transform: translateY(-50%);
   }
   100% {
     opacity: 1;
-    transform: translateY(0); /* 最終的な位置 */
+    transform: translateY(0);
+  }
+}
+
+/* モバイルデバイス用のスタイル */
+@media (max-width: 768px) { /* 768px以下の幅の場合 */
+  .image-container {
+    align-items: center; /* 垂直方向中央揃え */
+  }
+  img {
+    max-height: 395px; /* 最大高さを設定して、画面からはみ出さないようにする */
   }
 }
 </style>
