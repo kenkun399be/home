@@ -18,7 +18,7 @@
     }
     .slider-container {
       display: inline-block;
-      width: 100%; /* スマホ画面に合わせて幅を100%に設定 */
+      width: 100%;
       overflow: hidden;
     }
     .image-slider {
@@ -116,53 +116,96 @@
       </div>
     </div>
     <br>
-    <button class="button" onclick="prevSlide()">＜</button>
-    <button class="button" onclick="nextSlide()">＞</button>
+    <button class="button" id="prevButton" onclick="prevSlide()">＜</button>
+    <button class="button" id="nextButton" onclick="nextSlide()">＞</button>
   </div>
 
   <script>
     const slider = document.getElementById("imageSlider");
     const imageWidth = 638.98;
     const spacerWidth = 10;
-    const containerWidth = window.innerWidth;  // 動的にウィンドウの幅を取得
+    const containerWidth = window.innerWidth;
     const visibleImages = Math.floor(containerWidth / (imageWidth + spacerWidth));
 
-    let imageHTML = '';
-    for (let i = 0; i < 10000; i++) {
-      if (i % 2 === 0) {
-        imageHTML += `<div class="image-wrapper"><img src="images/youtube.png" alt="youtube"></div>`;
-      } else {
-        imageHTML += `<div class="image-wrapper"><img src="images/addon.png" alt="addon"></div>`;
-      }
-      if (i < 9999) imageHTML += `<div class="spacer"></div>`;
+    let imagesData = [];
+    // 画像データの配列
+    for (let i = 0; i < 10; i++) {
+      imagesData.push("images/youtube.png");
+      imagesData.push("images/addon.png");
     }
+
+    let imageHTML = '';
+    imagesData.forEach(src => {
+      imageHTML += `<div class="image-wrapper"><img src="${src}" alt="image"></div>`;
+      imageHTML += `<div class="spacer"></div>`;
+    });
+
     slider.innerHTML = imageHTML;
     const images = slider.querySelectorAll("img");
-    let currentImage = 5000;
+    let currentImage = 0;
 
-    slider.style.width = ((imageWidth + spacerWidth) * 10000) + 'px';
+    // スライダーの幅を設定
+    slider.style.width = `${(imageWidth + spacerWidth) * imagesData.length}px`;
     slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
 
-    function nextSlide() {
-      currentImage++;
-      const offset = -currentImage * (imageWidth + spacerWidth);
-      slider.style.transform = `translateX(${offset}px)`;
+    // ボタンの有効/無効を切り替える関数
+    function toggleButtons(isEnabled) {
+      const prevButton = document.getElementById("prevButton");
+      const nextButton = document.getElementById("nextButton");
+      prevButton.disabled = !isEnabled;
+      nextButton.disabled = !isEnabled;
+    }
 
-      if (currentImage >= 10000 - visibleImages + 1) {
-        currentImage = 0;
+    function nextSlide() {
+      toggleButtons(false); // ボタンを無効にする
+      currentImage++;
+      if (currentImage >= 5) {
+        // 一定数進んだらアニメーションなしで後ろに戻る
+        slider.style.transition = 'none';
         slider.style.transform = `translateX(0px)`;
+
+        // 初期位置に戻った後、アニメーション再開
+        setTimeout(() => {
+          slider.style.transition = 'transform 0.5s ease-in-out';
+          currentImage = 1; // 次の画像からスムーズに再開
+          slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
+          toggleButtons(true); // アニメーション後にボタンを有効にする
+        }, 100); // 短時間待機してからアニメーション再開
+      } else {
+        const offset = -currentImage * (imageWidth + spacerWidth);
+        slider.style.transform = `translateX(${offset}px)`;
+        setTimeout(() => {
+          toggleButtons(true); // アニメーション後にボタンを有効にする
+        }, 500); // アニメーション時間に合わせて待機
       }
     }
 
     function prevSlide() {
+      toggleButtons(false); // ボタンを無効にする
       currentImage--;
-      const offset = -currentImage * (imageWidth + spacerWidth);
-      slider.style.transform = `translateX(${offset}px)`;
-
       if (currentImage < 0) {
-        currentImage = 9999 - visibleImages + 1;
+        // 逆方向に戻るときに、アニメーションなしで最後の画像に移動
+        slider.style.transition = 'none';
+        currentImage = 2;
+        slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
+
+        // 最後の位置から再びアニメーション開始
+        setTimeout(() => {
+          slider.style.transition = 'transform 0.5s ease-in-out';
+          currentImage--;
+          if (currentImage < -1) {
+            currentImage = imagesData.length - 1;
+          }
+          const offset = -currentImage * (imageWidth + spacerWidth);
+          slider.style.transform = `translateX(${offset}px)`;
+          toggleButtons(true); // アニメーション後にボタンを有効にする
+        }, 100);
+      } else {
         const offset = -currentImage * (imageWidth + spacerWidth);
         slider.style.transform = `translateX(${offset}px)`;
+        setTimeout(() => {
+          toggleButtons(true); // アニメーション後にボタンを有効にする
+        }, 500); // アニメーション時間に合わせて待機
       }
     }
   </script>
