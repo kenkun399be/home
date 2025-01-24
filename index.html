@@ -184,13 +184,13 @@
 
       .button {
         font-size: 14px;  /* ボタンの文字サイズを小さく */
+        display: none;  /* ボタンを非表示に */
       }
     }
   </style>
 </head>
 <body>
   <!-- 背景の星をランダムに表示 -->
-  <!-- 星の数を20個に増やします -->
   <div class="star" style="top: 10%; left: 10%; width: 5px; height: 5px; --rand-x-1: 200px; --rand-y-1: 100px; --rand-x-2: -200px; --rand-y-2: -150px;"></div>
   <div class="star" style="top: 20%; left: 30%; width: 8px; height: 8px; --rand-x-1: -150px; --rand-y-1: 50px; --rand-x-2: 100px; --rand-y-2: -100px;"></div>
   <div class="star" style="top: 50%; left: 50%; width: 6px; height: 6px; --rand-x-1: 100px; --rand-y-1: -150px; --rand-x-2: -150px; --rand-y-2: 200px;"></div>
@@ -224,18 +224,20 @@
     <br>
     <button class="button" id="prevButton" onclick="prevSlide()">＜</button>
     <button class="button" id="nextButton" onclick="nextSlide()">＞</button>
-  </div>
-
-  <div class="youtube-shorts">
-    <h2>人気のYouTube動画</h2>
-    <div class="youtube-shorts-container">
-      <iframe src="https://www.youtube.com/embed/8xstmeatMyI?si=YevsI1UDon7tUE-9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/v7mAOjG2CW4?si=Qxt9zuaS6IeYBjb9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/8xstmeatMyI?si=IpRL7_P07fJAQFrB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <div class="youtube-shorts">
+      <div class="youtube-shorts">
+        <h2>人気のYouTube動画</h2>
+        <div class="youtube-shorts-container">
+          <iframe src="https://www.youtube.com/embed/8xstmeatMyI?si=YevsI1UDon7tUE-9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/v7mAOjG2CW4?si=Qxt9zuaS6IeYBjb9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/8xstmeatMyI?si=IpRL7_P07fJAQFrB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
+    // スライダーに画像を動的に挿入するコード
     const slider = document.getElementById("imageSlider");
     const imageWidth = 638.98;
     const spacerWidth = 10;
@@ -263,6 +265,25 @@
     slider.style.width = `${(imageWidth + spacerWidth) * imagesData.length}px`;
     slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
 
+    let startX = 0;
+    let endX = 0;
+
+    // タッチイベントを追加
+    slider.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener('touchmove', function (e) {
+      endX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener('touchend', function () {
+      if (startX - endX > 50) {
+        nextSlide();  // 右にスワイプで次の画像
+      } else if (endX - startX > 50) {
+        prevSlide();  // 左にスワイプで前の画像
+      }
+    });
 
     function toggleButtons(isEnabled) {
       const prevButton = document.getElementById("prevButton");
@@ -286,24 +307,12 @@
       toggleButtons(false);
       currentImage--;
       if (currentImage < 0) {
-        currentImage = imagesData.length -1;
+        currentImage = imagesData.length - 1;
       }
       const offset = -currentImage * (imageWidth + spacerWidth);
       slider.style.transform = `translateX(${offset}px)`;
       setTimeout(() => toggleButtons(true), 500);
     }
-
-    const youtubeShortsContainer = document.querySelector('.youtube-shorts-container');
-    const iframes = youtubeShortsContainer.querySelectorAll('iframe');
-
-    iframes.forEach(iframe => {
-      iframe.addEventListener('load', function() {
-        const containerWidth = this.offsetWidth;
-        const aspectRatio = 9 / 16;
-        const height = containerWidth * aspectRatio;
-        this.height = height;
-      });
-    });
   </script>
 </body>
 </html>
