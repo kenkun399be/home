@@ -292,27 +292,27 @@
       nextButton.disabled = !isEnabled;
     }
 
-    function nextSlide() {
-      toggleButtons(false);
-      currentImage++;
-      if (currentImage >= imagesData.length) {
-        currentImage = 0;
+    function prevSlide() {
+      if (currentImage > 0) {
+        currentImage--;
+        slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
+        toggleButtons(true);
       }
-      const offset = -currentImage * (imageWidth + spacerWidth);
-      slider.style.transform = `translateX(${offset}px)`;
-      setTimeout(() => toggleButtons(true), 500);
     }
 
-    function prevSlide() {
-      toggleButtons(false);
-      currentImage--;
-      if (currentImage < 0) {
-        currentImage = imagesData.length - 1;
+    function nextSlide() {
+      if (currentImage < imagesData.length - visibleImages) {
+        currentImage++;
+        slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
+        toggleButtons(true);
       }
-      const offset = -currentImage * (imageWidth + spacerWidth);
-      slider.style.transform = `translateX(${offset}px)`;
-      setTimeout(() => toggleButtons(true), 500);
     }
+
+    // ページ全体でスワイプを無効にする
+    document.body.addEventListener('touchmove', function(e) {
+      e.preventDefault(); // スワイプを無効にする
+    }, { passive: false });
+
   </script>
 </body>
 </html>
