@@ -2,18 +2,25 @@
 <html>
 <head>
   <title>スライド画像</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- レスポンシブ対応 -->
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
+      margin: 0;
+      padding: 0;
     }
     .container {
-      display: inline-block;
+      display: block; /* 必須ではありませんが、通常ブロック要素として扱う */
       position: relative;
+      width: 100%; /* コンテナの幅を100%に */
+      max-width: 1800px; /* 最大幅を設定 */
+      margin: 0 auto; /* 自動で左右の余白を取って中央寄せ */
+      box-sizing: border-box;
     }
     .slider-container {
       display: inline-block;
-      width: 1800px; /* パソコン用の幅 */
+      width: 100%; /* スライダー幅を100%に */
       overflow: hidden;
     }
     .image-slider {
@@ -23,7 +30,7 @@
     .image-slider .image-wrapper {
       position: relative;
       overflow: hidden;
-      width: 638.98px;
+      width: 638.98px; /* パソコン用の幅 */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -72,22 +79,22 @@
       height: auto;
     }
 
-    /* 768px以下の画面幅の場合のスタイル変更(スマホなど) */
+    /* スマホやタブレット向けのスタイル */
     @media (max-width: 768px) {
       .slider-container {
-        width: 100%;
+        width: 100%; /* スライダー幅を100%に */
         overflow-x: auto;
       }
       .image-slider {
         flex-direction: column;
       }
       .image-slider .image-wrapper {
-        width: 100%;
+        width: 100%; /* 画像の幅を100%に */
         margin-bottom: 10px;
         border-radius: 0;
       }
       .image-slider img {
-        width: 100%;
+        width: 100%; /* 画像が100%に拡大 */
         height: auto;
         transition: transform 0.35s ease-in-out;
       }
@@ -111,6 +118,8 @@
       }
       .button {
         margin: 10px;
+        padding: 8px;
+        font-size: 14px;
       }
     }
   </style>
