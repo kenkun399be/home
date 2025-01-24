@@ -278,41 +278,26 @@
     });
 
     slider.addEventListener('touchend', function () {
-      if (startX - endX > 50) {
-        nextSlide();  // 右にスワイプで次の画像
-      } else if (endX - startX > 50) {
-        prevSlide();  // 左にスワイプで前の画像
+      if (startX > endX) {
+        nextSlide();
+      } else if (startX < endX) {
+        prevSlide();
       }
     });
 
-    function toggleButtons(isEnabled) {
-      const prevButton = document.getElementById("prevButton");
-      const nextButton = document.getElementById("nextButton");
-      prevButton.disabled = !isEnabled;
-      nextButton.disabled = !isEnabled;
+    function nextSlide() {
+      if (currentImage < imagesData.length - visibleImages) {
+        currentImage++;
+        slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
+      }
     }
 
     function prevSlide() {
       if (currentImage > 0) {
         currentImage--;
         slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
-        toggleButtons(true);
       }
     }
-
-    function nextSlide() {
-      if (currentImage < imagesData.length - visibleImages) {
-        currentImage++;
-        slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
-        toggleButtons(true);
-      }
-    }
-
-    // ページ全体でスワイプを無効にする
-    document.body.addEventListener('touchmove', function(e) {
-      e.preventDefault(); // スワイプを無効にする
-    }, { passive: false });
-
   </script>
 </body>
 </html>
