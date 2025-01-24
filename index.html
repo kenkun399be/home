@@ -1,57 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>レスポンシブな画像</title>
+<title>スライド画像</title>
 <style>
 body {
-  margin: 0;
+  font-family: sans-serif;
+  text-align: center;
+}
+.container {
+  display: inline-block;
+}
+.slider-container {
+  display: inline-block;
+  width: 1800px; /* コンテンツの幅に合わせて変更 */
   overflow: hidden;
 }
-
-.image-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw; /* 画面幅全体 */
-  height: auto; /* 画像のアスペクト比を維持 */
-  z-index: 1000;
+.image-slider {
   display: flex;
-  justify-content: center; /* 水平方向中央揃え */
-  align-items: flex-start; /* 垂直方向上揃え */
+  transition: transform 0.5s ease-in-out;
 }
-
-img {
-  max-width: 100%; /* 画面幅に合わせて最大サイズを調整 */
-  height: auto; /* 画像のアスペクト比を維持 */
-  opacity: 0;
-  animation: dropIn 1s ease-in-out forwards;
+.image-slider img {
+  width: 638.98px; /* 画像の幅を変更 */
+  height: auto; /* 高さは自動調整 */
+  flex-shrink: 0;
+  border-radius: 50px; /* 角丸の半径 */
 }
-
-@keyframes dropIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-50%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.image-slider .spacer {
+  width: 10px; /* 隙間幅 */
 }
-
-/* モバイルデバイス用のスタイル */
-@media (max-width: 768px) { /* 768px以下の幅の場合 */
-  .image-container {
-    align-items: center; /* 垂直方向中央揃え */
-  }
-  img {
-    max-height: 395px; /* 最大高さを設定して、画面からはみ出さないようにする */
-  }
+.button {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #f00;
+  color: white;
+  border: none;
+  border-radius: 50000px;
+  margin: 50px;
+}
+.kenkun {
+  text-align: center;
+}
+.kenkun img {
 }
 </style>
 </head>
 <body>
-<div class="image-container">
-  <img src="images/kenkun1.png" alt="フェードイン画像" />
+<div class="container">
+  <div class="kenkun">
+    <img src="images/kenkun1.png" alt="kenkun1">
+  </div>
+  <div class="slider-container">
+    <div class="image-slider" id="imageSlider">
+    </div>
+  </div>
+  <button class="button" onclick="prevSlide()">＜</button>
+  <button class="button" onclick="nextSlide()">＞</button>
 </div>
+
+<script>
+const slider = document.getElementById("imageSlider");
+const imageWidth = 638.98; // 画像幅変更
+const spacerWidth = 10; // 隙間幅
+const containerWidth = 1800; // コンテナ幅変更
+const visibleImages = Math.floor(containerWidth / (imageWidth + spacerWidth)); // 表示画像数再計算
+
+let imageHTML = '';
+for (let i = 0; i < 10000; i++) {
+  if (i % 2 === 0) {
+    imageHTML += `<img src="images/youtube.png" alt="youtube">`;
+  } else {
+    imageHTML += `<img src="images/addon.png" alt="addon">`;
+  }
+  if (i < 9999) imageHTML += `<div class="spacer"></div>`; //画像間に隙間を追加
+}
+slider.innerHTML = imageHTML;
+const images = slider.querySelectorAll("img");
+let currentImage = 5000; // 初期表示位置
+
+slider.style.width = ((imageWidth + spacerWidth) * 10000) + 'px'; //幅の再計算
+slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
+
+function nextSlide() {
+  currentImage++;
+  const offset = -currentImage * (imageWidth + spacerWidth);
+  slider.style.transform = `translateX(${offset}px)`;
+
+  if (currentImage >= 10000 - visibleImages + 1) {
+    currentImage = 0;
+    slider.style.transform = `translateX(0px)`;
+  }
+}
+
+function prevSlide() {
+  currentImage--;
+  const offset = -currentImage * (imageWidth + spacerWidth);
+  slider.style.transform = `translateX(${offset}px)`;
+
+  if (currentImage < 0) {
+    currentImage = 9999 - visibleImages + 1;
+    const offset = -currentImage * (imageWidth + spacerWidth);
+    slider.style.transform = `translateX(${offset}px)`;
+  }
+}
+</script>
 </body>
 </html>
