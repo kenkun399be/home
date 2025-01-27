@@ -4,22 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>けんくん</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
       margin: 0;
       padding: 0;
-      background-color: #f8d7da;  /* 薄い赤の背景 */
+      background-color: #f8d7da;
       background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px), radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-      background-size: 20px 20px, 10px 10px;  /* 背景模様のサイズ */
-      background-position: 0 0, 10px 10px; /* 背景模様の位置 */
+      background-size: 20px 20px, 10px 10px;
+      background-position: 0 0, 10px 10px;
       position: relative;
-      overflow-x: hidden;  /* 横スクロールを非表示に */
-      height: 100%; /* 縦スクロールを有効に */
+      overflow-x: hidden;
+      height: 100%;
     }
 
-    /* 星がアニメーションで動く効果 */
     .star {
       position: absolute;
       border-radius: 50%;
@@ -28,7 +28,6 @@
       opacity: 0.8;
     }
 
-    /* ランダムな動きを与えるアニメーション */
     @keyframes star-animation {
       0% {
         transform: scale(0) translateX(0) translateY(0);
@@ -135,7 +134,7 @@
     .youtube-shorts-container {
       display: flex;
       flex-wrap: nowrap;
-      justify-content: flex-start;  /* ここを変更 */
+      justify-content: flex-start;
       width: 1000px;
       max-width: 100%;
       overflow-x: auto;
@@ -143,18 +142,14 @@
     }
 
     .youtube-shorts-container iframe {
-      width: 350px;  /* 幅を少し小さく変更 */
-      height: 625px; /* 高さも調整 */
+      width: 350px;
+      height: 625px;
       margin: 10px;
     }
 
     @media (min-width: 1200px) {
       .youtube-shorts-container {
-        width: 1100px;  /* より広く設定 */
-      }
-      .youtube-shorts-container iframe {
-        width: 350px; /* 幅を350pxに設定 */
-        height: 625px;
+        width: 1100px;
       }
     }
 
@@ -162,21 +157,16 @@
       .youtube-shorts-container {
         width: 1000px;
       }
-      .youtube-shorts-container iframe {
-        width: 350px;
-        height: 625px;
-      }
     }
 
-    /* スマホサイズのスタイル調整 */
     @media (max-width: 768px) {
       body {
-        background-size: 30px 30px, 15px 15px; /* 背景の模様のサイズを調整 */
+        background-size: 30px 30px, 15px 15px;
       }
 
       .container {
-        width: 100%; /* 幅を100%に */
-        padding: 0 15px;  /* 少し余白を加え、画面いっぱいに広げる */
+        width: 100%;
+        padding: 0 15px;
       }
 
       .slider-container {
@@ -184,44 +174,36 @@
       }
 
       .image-slider .image-wrapper {
-        width: 70vw;  /* スライダーの幅をスマホ画面幅の70%に設定 */
-        height: 40vw;  /* 高さも調整 */
+        width: 70vw;
+        height: 40vw;
       }
 
       .youtube-shorts-container {
-        width: 90%;  /* スマホの時にYouTubeコンテナの幅を90%に設定 */
-        margin: 0 auto;  /* 中央揃え */
+        width: 90%;
+        margin: 0 auto;
       }
 
       .youtube-shorts-container iframe {
-        width: 100%;  /* iframeの幅をコンテナに合わせる */
-        height: 150vw;  /* 高さを広げる */
+        width: 100%;
+        height: 150vw;
       }
 
-      /* ボタンの表示 */
       .button {
-        font-size: 14px;  /* ボタンの文字サイズを小さく */
-        display: inline-block;  /* ボタンを表示 */
-        margin: 20px; /* ボタンの余白 */
-        padding: 10px; /* ボタンの内側の余白 */
+        font-size: 14px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- 背景の星をランダムに表示 -->
   <div class="star" style="top: 10%; left: 10%; width: 5px; height: 5px; --rand-x-1: 200px; --rand-y-1: 100px; --rand-x-2: -200px; --rand-y-2: -150px;"></div>
   <div class="star" style="top: 20%; left: 30%; width: 8px; height: 8px; --rand-x-1: -150px; --rand-y-1: 50px; --rand-x-2: 100px; --rand-y-2: -100px;"></div>
 
-  <!-- コンテンツ -->
   <div class="container">
     <div class="kenkun">
       <img src="images/kenkun1.png" alt="kenkun1">
     </div>
     <div class="slider-container">
-      <div class="image-slider" id="imageSlider">
-        <!-- 画像が動的に挿入されます -->
-      </div>
+      <div class="image-slider" id="imageSlider"></div>
     </div>
     <br>
     <button class="button" id="prevButton" onclick="prevSlide()">＜</button>
@@ -229,9 +211,9 @@
     <div class="youtube-shorts">
       <h2>人気のYouTube動画</h2>
       <div class="youtube-shorts-container">
-        <iframe src="https://www.youtube.com/embed/8xstmeatMyI?si=YevsI1UDon7tUE-9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/v7mAOjG2CW4?si=Qxt9zuaS6IeYBjb9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/8xstmeatMyI?si=IpRL7_P07fJAQFrB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/8xstmeatMyI" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/v7mAOjG2CW4" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/8xstmeatMyI" allowfullscreen></iframe>
       </div>
     </div>
   </div>
@@ -240,61 +222,13 @@
     const slider = document.getElementById("imageSlider");
     const imageWidth = 638.98;
     const spacerWidth = 10;
-    const containerWidth = window.innerWidth;
-    const visibleImages = Math.floor(containerWidth / (imageWidth + spacerWidth));
-
-    let imagesData = [];
-    for (let i = 0; i < 10; i++) {
-      imagesData.push("images/youtube.png");
-      imagesData.push("images/addon.png");
-    }
-
+    let imagesData = ["images/youtube.png", "images/addon.png"];
     let imageHTML = '';
     imagesData.forEach(src => {
-      if (src === "images/youtube.png") {
-        imageHTML += `<div class="image-wrapper"><a href="https://www.youtube.com/@kenkun499BE" target="_blank"><img src="${src}" alt="image"></a></div>`;
-      } else {
-        imageHTML += `<div class="image-wrapper"><img src="${src}" alt="image"></div>`;
-      }
+      imageHTML += `<div class="image-wrapper"><img src="${src}" alt="image"></div>`;
       imageHTML += `<div class="spacer"></div>`;
     });
-
     slider.innerHTML = imageHTML;
-    let currentImage = Math.floor(5);  // 中央の画像に設定
-    slider.style.width = `${(imageWidth + spacerWidth) * imagesData.length}px`;
-    slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
-
-    function nextSlide() {
-      if (currentImage < imagesData.length - visibleImages) {
-        currentImage++;
-        slider.style.transition = "transform 0.5s ease-in-out"; // アニメーションを有効にする
-        slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
-      }
-      // 3つ進んだ場合、アニメーションなしで初期位置に戻す
-      if (currentImage >= 7) {
-        setTimeout(() => {
-          slider.style.transition = "none"; // アニメーションなし
-          currentImage = Math.floor(5); // 中央に戻す
-          slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`; // 中央位置に戻す
-        }, 500); // 500ms後に初期位置に戻す
-      }
-    }
-
-    function prevSlide() {
-      if (currentImage > 0) {
-        currentImage--;
-        slider.style.transition = "transform 0.5s ease-in-out"; // アニメーションを有効にする
-        slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`;
-      }
-      // 3つ戻った場合、アニメーションなしで初期位置に戻す
-      if (currentImage <= 3) {
-        setTimeout(() => {
-          slider.style.transition = "none"; // アニメーションなし
-          currentImage = Math.floor(5); // 中央に戻す
-          slider.style.transform = `translateX(-${currentImage * (imageWidth + spacerWidth)}px)`; // 中央位置に戻す
-        }, 500); // 500ms後に初期位置に戻す
-      }
-    }
   </script>
 </body>
 </html>
